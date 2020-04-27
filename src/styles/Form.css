@@ -1,0 +1,19 @@
+#title {
+	font-size: 5em;
+	font-weight: bold;
+}
+
+#desc {
+	font-size: 2em;
+}
+
+#name {
+	text-align: center;
+}
+
+#join-button {
+	background-color: #04b074;
+	color: white;
+	width: 30%;
+	margin-top: 6%;
+}
