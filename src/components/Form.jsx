@@ -3,14 +3,18 @@ import { Button, Input } from 'semantic-ui-react';
 import { withFirebase } from './Firebase';
 import '../styles/Form.css';
 
-const Form = ({ firebase, history }) => {
+const Form = ({ firebase, history, location }) => {
 	const [name, setName] = useState('');
 
 	const submitName = async () => {
-		if (name === '' || !name) return alert('You need to enter a name before joining')
+		if (name === '' || !name) return alert('You need to enter a name before joining');
+		firebase.setName(name);
 		await firebase.askPermission();
-		const id = await firebase.createRoom();
-		history.push(`/${id}`, { name });
+		if (!location.state || !location.state.id) {
+			const id = await firebase.createRoom();
+			history.push(`/${id}`);
+		} else
+			history.push(`/${location.state.id}`);
 	}
 
 	return (
