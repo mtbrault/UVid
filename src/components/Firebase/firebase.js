@@ -136,26 +136,6 @@ class Firebase {
 		}
 		return true;
 	}
-
-	registerPeerConnectionListeners = () => {
-		this.peerConnection.addEventListener('icegatheringstatechange', () => {
-			console.log(
-				`ICE gathering state changed: ${this.peerConnection.iceGatheringState}`);
-		});
-
-		this.peerConnection.addEventListener('connectionstatechange', () => {
-			console.log(`Connection state change: ${this.peerConnection.connectionState}`);
-		});
-
-		this.peerConnection.addEventListener('signalingstatechange', () => {
-			console.log(`Signaling state change: ${this.peerConnection.signalingState}`);
-		});
-
-		this.peerConnection.addEventListener('iceconnectionstatechange ', () => {
-			console.log(
-				`ICE connection state change: ${this.peerConnection.iceConnectionState}`);
-		});
-	}
 }
 
 export default Firebase;
