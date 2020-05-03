@@ -125,7 +125,7 @@ class Firebase {
 				}
 			};
 			await roomRef.update(roomWithAnswer);
-			roomRef.collection(`colleeCandidates${0}`).onSnapshot(snapshot => {
+			roomRef.collection(`calleeCandidates${0}`).onSnapshot(snapshot => {
 				snapshot.docChanges().forEach(async change => {
 					if (change.type === 'added') {
 						const data = change.doc.data();
