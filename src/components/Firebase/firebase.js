@@ -70,7 +70,6 @@ class Firebase {
 		});
 		const offers = await snapshot.data();
 		const userId = Object.keys(offers).length;
-		console.log(`Je suis l\'id ${userId}`);
 		const calleeCandidatesCollection = roomRef.collection(`calleeCandidates${userId}`);
 		this.peerConnection.addEventListener('icecandidate', event => {
 			if (!event.candidate) return false;
@@ -105,10 +104,10 @@ class Firebase {
 			roomRef.collection(`calleeCandidates${1}`).onSnapshot(snapshot => {
 				snapshot.docChanges().forEach(async change => {
 					if (change.type === 'added') {
-						const data = change.doc.data();
+						let data = change.doc.data();
 						await this.peerConnection.addIceCandidate(new RTCIceCandidate(data));
 					}
-				})
+				});
 			});
 		} else if (userId === 1) {
 			await this.peerConnection.setRemoteDescription(new RTCSessionDescription(offers.offer0.offers[1]));
@@ -128,10 +127,10 @@ class Firebase {
 			roomRef.collection(`calleeCandidates${0}`).onSnapshot(snapshot => {
 				snapshot.docChanges().forEach(async change => {
 					if (change.type === 'added') {
-						const data = change.doc.data();
+						let data = change.doc.data();
 						await this.peerConnection.addIceCandidate(new RTCIceCandidate(data));
 					}
-				})
+				});
 			});
 		}
 		return true;
